@@ -1,0 +1,8 @@
+{
+  "name": "ynit-my-task-tracker",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "60f2f73f"
+}

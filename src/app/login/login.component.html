@@ -1,0 +1,48 @@
+<ion-app><ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{ folder }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-align-items-center background loginopacity" fullscreen>
+<ion-card> 
+  <ion-card-header>
+    <ion-card-subtitle>Task Tracker</ion-card-subtitle>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-grid>
+      <ion-row class="ion-align-items-center">
+        <ion-col>
+            <form> 
+              <ion-item lines="full">
+                <ion-label position="floating" >Email</ion-label>
+                <ion-input #email1='ngModel' type="text" required name="email" [(ngModel)]="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"></ion-input>
+              </ion-item>
+              <div *ngIf="email1.invalid && (email1.dirty || email1.touched)"class="alert">
+                <div *ngIf="email1.errors?.['required'] &&  email1.touched"><ion-label position="floating" color="danger"><b>Email is requred.</b></ion-label></div>
+                <div *ngIf="email1.errors?.pattern"><ion-label position="floating" color="danger"><b>Incorrect pattern for Email</b></ion-label></div>
+                </div>
+              <ion-item lines="full">
+                <ion-label position="floating" >Password</ion-label>
+                <ion-input #password1="ngModel" type="password" required name="password" [(ngModel)]="password"></ion-input>
+              </ion-item>
+              <div *ngIf="password1.invalid && (password1.dirty || password1.touched)"class="alert">
+                <div *ngIf="password1.errors?.['required'] &&  password1.touched"><ion-label position="floating" color="danger"><b>Password is required.</b></ion-label></div>
+              </div>        
+            </form>
+        </ion-col> 
+      </ion-row>
+      <ion-row class="ion-align-items-center" size-md>
+        <ion-col>
+          <ion-button type="submit" color="primary" (click)="login()" [disabled]="email1.invalid || password1.invalid"><ion-icon name="log-in-outline"></ion-icon></ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>
+
+
+</ion-content></ion-app>

@@ -1,0 +1,29 @@
+<ion-app>
+  <ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{ folder }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="background">
+<ion-card *ngFor="let task of tasks">
+  <ion-card-header>
+    <ion-card-subtitle><b>Progress</b> <hr /> <ion-badge color="{{ task.progressStatus }}">{{ task.progress }}%</ion-badge></ion-card-subtitle>
+    <ion-progress-bar color="{{ task.progressStatus }}" value="{{ task.progress / 100 }}"></ion-progress-bar>
+    <ion-card-title >{{ task.name }}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <i>{{ task.description }}</i>
+    <hr />
+    <b>Start Date: {{ task.startDate }}</b>
+    <hr />
+    <b>End Date: {{ task.endDate }}</b>
+    <hr />
+    <ion-button slot="icon-only" size="small" color="{{ task.progressStatus }}">continue</ion-button>
+  </ion-card-content>
+</ion-card>
+</ion-content>
+</ion-app>

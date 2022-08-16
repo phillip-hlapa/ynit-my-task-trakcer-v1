@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "ynit-my-task-tracker",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
