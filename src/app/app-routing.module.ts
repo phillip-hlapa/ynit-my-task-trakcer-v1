@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { CreatetaskComponent } from './createtask/createtask.component';
+import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { RegisterComponent } from './register/register.component';
@@ -11,7 +12,12 @@ import { TasksviewComponent } from './tasksview/tasksview.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'tasksapp/login',
+    redirectTo: 'tasksapp/home',
+    pathMatch: 'full'
+  },
+  {
+    path: 'tasksapp',
+    redirectTo: 'tasksapp/home',
     pathMatch: 'full'
   },
   {
@@ -41,6 +47,10 @@ const routes: Routes = [
   {
     path: 'tasksapp/tasksprogress',
     component: TasksprogressComponent
+  },
+  {
+    path: 'tasksapp/home',
+    component: HomeComponent
   },
   {
     path: 'tasksapp/:id',

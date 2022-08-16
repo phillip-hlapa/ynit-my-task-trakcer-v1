@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   public appPages = [
+    { title: 'Home', url: '/tasksapp/home', icon: 'home'},
     { title: 'Login', url: '/tasksapp/login', icon: 'finger-print'},
     { title: 'Register', url: '/tasksapp/register', icon: 'create' },
     { title: 'View Tasks', url: '/tasksapp/tasks', icon: 'book' },

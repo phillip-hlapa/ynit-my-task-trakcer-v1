@@ -1,0 +1,25 @@
+<ion-app><ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{ folder }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<h5 color="primary">News Feed</h5>
+<ion-content class="ion-align-items-center loginopacity" fullscreen>
+      <ion-card *ngFor="let info of news">
+        <img src="../../assets/img/{{ info.news_img }}" alt="Nothing here"/>
+        <ion-card-header>
+          <ion-card-subtitle>{{ info.news_header_subtitle }}</ion-card-subtitle>
+          <ion-card-title>{{ info.news_header_title }}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          {{ info.news_header_content }}
+        </ion-card-content>
+      </ion-card>
+
+
+</ion-content>
+
+</ion-app>

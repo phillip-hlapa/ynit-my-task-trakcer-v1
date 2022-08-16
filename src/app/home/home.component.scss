@@ -1,0 +1,15 @@
+ion-content.background{
+    --background: url(../../assets/img/home.jpg) 0 0/100% 100% no-repeat;
+}
+
+ion-content.loginopacity{
+    --ion-backdrop-opacity: rgba(0, 0, 0, .9);
+}
+
+ion-card{
+    --background: rgba(0, 0, 0, .3);
+}
+
+ion-item{
+    --background: rgba(0, 0, 0, .2);
+}

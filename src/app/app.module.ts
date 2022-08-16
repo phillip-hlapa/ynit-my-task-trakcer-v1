@@ -15,6 +15,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { CreatetaskComponent } from './createtask/createtask.component';
 import { HttpClientModule } from '@angular/common/http'
 import { FormsModule } from '@angular/forms';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { FormsModule } from '@angular/forms';
     LoginComponent, 
     RegisterComponent, 
     LogoutComponent, 
-    CreatetaskComponent
+    CreatetaskComponent,
+    HomeComponent
   ],
   imports: [BrowserModule, HttpClientModule, IonicModule.forRoot(), AppRoutingModule, FormsModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
