@@ -20,16 +20,16 @@
         <ion-input  minlength="4" type="text" required [(ngModel)]="registerObj.name" name="name" #name="ngModel"></ion-input>
       </ion-item>
        <div *ngIf="name.invalid && (name.dirty || name.touched)"class="alert">
-       <div *ngIf="name.errors?.['required'] &&  name.touched"><ion-label position="floating" color="danger"><b>Name is required.</b></ion-label></div>
-       <div *ngIf="name.errors?.['minlength']"><ion-label position="floating" color="danger"><b>Name must be at least 4 characters long.</b></ion-label></div>
+       <div *ngIf="name.errors?.['required'] &&  name.touched"><ion-label position="floating" color="danger"><i>Name is required.</i></ion-label></div>
+       <div *ngIf="name.errors?.['minlength']"><ion-label position="floating" color="danger"><i>Name must be at least 4 characters long.</i></ion-label></div>
       </div>
       <ion-item >
         <ion-label position="floating">Email</ion-label>
         <ion-input  #email="ngModel" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required [(ngModel)]="registerObj.email" name="email"></ion-input>
       </ion-item>
       <div *ngIf="email.invalid && (name.dirty || email.touched)"class="alert">
-      <div *ngIf="email.errors?.['required'] &&  email.touched"><ion-label position="floating" color="danger"><b>Email is requred.</b></ion-label></div>
-      <div *ngIf="email.errors?.pattern"><ion-label position="floating" color="danger"><b>Incorrect pattern for Email</b></ion-label></div>
+      <div *ngIf="email.errors?.['required'] &&  email.touched"><ion-label position="floating" color="danger"><i>Email is requred.</i></ion-label></div>
+      <div *ngIf="email.errors?.pattern"><ion-label position="floating" color="danger"><i>Incorrect pattern for Email</i></ion-label></div>
       </div>
     
       <ion-item >
@@ -37,8 +37,8 @@
         <ion-input #password="ngModel" minlength="4" type="password" required [(ngModel)]="registerObj.password" name="password"></ion-input>
       </ion-item>
       <div *ngIf="password.invalid && (password.dirty || password.touched)"class="alert">
-        <div *ngIf="password.errors?.['required'] &&  password.touched"><ion-label position="floating" color="danger"><b>Password is required.</b></ion-label></div>
-        <div *ngIf="password.errors?.['minlength']"><ion-label position="floating" color="danger"><b>Password must be at least 4 characters long.</b></ion-label></div>
+        <div *ngIf="password.errors?.['required'] &&  password.touched"><ion-label position="floating" color="danger"><i>Password is required.</i></ion-label></div>
+        <div *ngIf="password.errors?.['minlength']"><ion-label position="floating" color="danger"><i>Password must be at least 4 characters long.</i></ion-label></div>
       </div>
     
       <ion-item >
@@ -46,8 +46,8 @@
         <ion-input #confirmpassword="ngModel" minlength="4" type="password" required [(ngModel)]="registerObj.confirmpassword" name="confirmpassword"></ion-input>
       </ion-item>
       <!-- <div *ngIf="confirmpassword.invalid && (confirmpassword.dirty || confirmpassword.touched)"class="alert"> -->
-        <div *ngIf="confirmpassword.errors?.['minlength']"><ion-label position="floating" color="danger"><b>Password must be at least 4 characters long.</b></ion-label></div>
-        <div *ngIf="!(confirmpassword.value === password.value) && password.touched"><ion-label position="floating" color="danger"><b>passwords don't match</b></ion-label></div>
+        <div *ngIf="confirmpassword.errors?.['minlength']"><ion-label position="floating" color="danger"><i>Password must be at least 4 characters long.</i></ion-label></div>
+        <div *ngIf="!(confirmpassword.value === password.value) && password.touched"><ion-label position="floating" color="danger"><i>passwords don't match</i></ion-label></div>
       <!-- </div>   -->
     
       <ion-button class="ion-margin-top" type="submit"  color="success" (click)="register()" [disabled]="password.invalid || confirmpassword.invalid || name.invalid || email.invalid || !(confirmpassword.value === password.value)">
@@ -55,6 +55,8 @@
       </ion-button>
       <hr />
       <ion-button color="primary" [routerLink]="['/tasksapp/login']"><ion-icon name="log-in-outline"></ion-icon></ion-button>
+      <hr />
+      <div *ngIf="showRegisterError"><ion-label position="floating" color="warning">{{ registerError }}</ion-label></div>
     
     
 

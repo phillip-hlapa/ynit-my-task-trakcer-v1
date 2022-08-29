@@ -5,9 +5,11 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { RegisterComponent } from './register/register.component';
+import { AuthGuard } from './services/guard.guard';
 import { TaskmanagementComponent } from './taskmanagement/taskmanagement.component';
 import { TasksprogressComponent } from './tasksprogress/tasksprogress.component';
 import { TasksviewComponent } from './tasksview/tasksview.component';
+import { UsersService } from './services/users-service/users.service';
 
 const routes: Routes = [
   {
@@ -30,7 +32,8 @@ const routes: Routes = [
   },
   {
     path: 'tasksapp/tasks',
-    component: TasksviewComponent
+    component: TasksviewComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: 'tasksapp/register',
@@ -62,6 +65,7 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AuthGuard, UsersService]
 })
 export class AppRoutingModule {}

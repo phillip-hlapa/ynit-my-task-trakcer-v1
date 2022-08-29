@@ -22,15 +22,15 @@
                 <ion-input #email1='ngModel' type="text" required name="email" [(ngModel)]="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"></ion-input>
               </ion-item>
               <div *ngIf="email1.invalid && (email1.dirty || email1.touched)"class="alert">
-                <div *ngIf="email1.errors?.['required'] &&  email1.touched"><ion-label position="floating" color="danger"><b>Email is requred.</b></ion-label></div>
-                <div *ngIf="email1.errors?.pattern"><ion-label position="floating" color="danger"><b>Incorrect pattern for Email</b></ion-label></div>
+                <div *ngIf="email1.errors?.['required'] &&  email1.touched"><ion-label position="floating" color="warning">Email is requred.</ion-label></div>
+                <div *ngIf="email1.errors?.pattern"><ion-label position="floating" color="warning">Incorrect pattern for Email</ion-label></div>
                 </div>
               <ion-item lines="full">
                 <ion-label position="floating" >Password</ion-label>
                 <ion-input #password1="ngModel" type="password" required name="password" [(ngModel)]="password"></ion-input>
               </ion-item>
               <div *ngIf="password1.invalid && (password1.dirty || password1.touched)"class="alert">
-                <div *ngIf="password1.errors?.['required'] &&  password1.touched"><ion-label position="floating" color="danger"><b>Password is required.</b></ion-label></div>
+                <div *ngIf="password1.errors?.['required'] &&  password1.touched"><ion-label position="floating" color="warning">Password is required.</ion-label></div>
               </div>        
             </form>
         </ion-col> 
@@ -38,6 +38,8 @@
       <ion-row class="ion-align-items-center" size-md>
         <ion-col>
           <ion-button type="submit" color="primary" (click)="login()" [disabled]="email1.invalid || password1.invalid"><ion-icon name="log-in-outline"></ion-icon></ion-button>
+          <hr />
+          <div *ngIf="showLoginError"><ion-label position="floating" color="warning">{{ loginError }}</ion-label></div>
         </ion-col>
       </ion-row>
     </ion-grid>
