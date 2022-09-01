@@ -14,7 +14,6 @@ import { AuthService } from '../services/auth-service/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  
   constructor(private activatedRoute: ActivatedRoute, private UserService: UsersService, private alertController: AlertController, private router: Router, private authGuard: AuthGuard, private authService: AuthService) { }
 
   public folder: string;
@@ -25,20 +24,29 @@ export class LoginComponent implements OnInit {
   public loginError = ''
   public showLoginError = false;
 
+  public visible_spinner = false
+
   ngOnInit() {
   
     // this.folder = this.activatedRoute.snapshot.paramMap.get('id');
     this.folder = 'Login'
     this.showLoginError = false
+    this.visible_spinner =  false
+    this.email = ''
+    this.password = ''
     console.log('sign up things => ', this.folder)
   }
 
   login() {
-    let login = {
-      email: this.email,
-      password: this.password
-    }
-    this.doLogin(login)
+    this.visible_spinner =  true
+    console.log('and then?')
+    setTimeout(() => {
+      let login = {
+        email: this.email,
+        password: this.password
+      }
+      this.doLogin(login)
+    }, 2000);
   }
 
   private doLogin(login: any) {
@@ -49,15 +57,16 @@ export class LoginComponent implements OnInit {
       if(result.message) {
         console.log(result)
         this.showLoginError = true
+        this.visible_spinner =  false
         this.loginError = result.message + '!'
       } else {
         console.log('login successful')
         this.email = ''
         this.password = ''
         sessionStorage.setItem('userId', result.user._id)
-        let loggedIn = this.authService.isAuthenticated();
-        console.log('is logged in', loggedIn)
+        sessionStorage.setItem('username', result.user.username)
         console.log(response)
+        this.visible_spinner =  false
         this.router.navigate(['tasksapp/home'])
       }
     }, err => {

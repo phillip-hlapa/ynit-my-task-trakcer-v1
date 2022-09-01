@@ -6,12 +6,53 @@
           <ion-list-header>YNIT</ion-list-header>
           <ion-note>tasks@ynitdevelopments.com</ion-note>
 
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-            <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
+          <ion-menu-toggle auto-hide="false">
+            <!-- <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
               <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
               <ion-label>{{ p.title }}</ion-label>
-            </ion-item>
-          </ion-menu-toggle>
+            </ion-item> -->
+          
+
+          <ion-item routerDirection="root" [routerLink]="['/tasksapp/home']" lines="none" detail="false" routerLinkActive="selected">
+            <ion-icon slot="start" ios="home-outline" md="home-sharp"></ion-icon>
+            <ion-label>Home</ion-label>
+          </ion-item>
+
+          <ion-item routerDirection="root" [routerLink]="['/tasksapp/login']" lines="none" detail="false" routerLinkActive="selected" [hidden]="usersService.isAuthenticated()">
+            <ion-icon slot="start" ios="finger-print-outline" md="finger-print-sharp"></ion-icon>
+            <ion-label>Login</ion-label>
+          </ion-item>
+
+          <ion-item routerDirection="root" [routerLink]="['/tasksapp/register']" lines="none" detail="false" routerLinkActive="selected" [hidden]="usersService.isAuthenticated()">
+            <ion-icon slot="start" ios="create-outline" md="create-sharp"></ion-icon>
+            <ion-label>Register</ion-label>
+          </ion-item>
+
+          <ion-item routerDirection="root" [routerLink]="['/tasksapp/tasks']" lines="none" detail="false" routerLinkActive="selected" [hidden]="!usersService.isAuthenticated()">
+            <ion-icon slot="start" ios="book-outline" md='book-sharp'></ion-icon>
+            <ion-label>View Tasks</ion-label>
+          </ion-item>
+
+          <ion-item routerDirection="root" [routerLink]="['/tasksapp/createtask']" lines="none" detail="false" routerLinkActive="selected" [hidden]="!usersService.isAuthenticated()">
+            <ion-icon slot="start" ios="bookmark-outline" md="bookmark-sharp"></ion-icon>
+            <ion-label>Create Tasks</ion-label>
+          </ion-item>
+
+          <ion-item routerDirection="root" [routerLink]="['/tasksapp/tasksprogress']" lines="none" detail="false" routerLinkActive="selected" [hidden]="!usersService.isAuthenticated()">
+            <ion-icon slot="start" ios="podium-outline" md="podium-sharp"></ion-icon>
+            <ion-label>Tasks Progress</ion-label>
+          </ion-item>
+
+          <ion-item routerDirection="root" [routerLink]="['/tasksapp/tasksmanagement']" lines="none" detail="false" routerLinkActive="selected" [hidden]="!usersService.isAuthenticated()">
+            <ion-icon slot="start" ios="settings-outline" md="settings-sharp"></ion-icon>
+            <ion-label>Tasks Management</ion-label>
+          </ion-item>
+
+          <ion-item routerDirection="root" [routerLink]="['/tasksapp/login']" lines="none" detail="false" [hidden]="!usersService.isAuthenticated()">
+            <ion-icon slot="start" ios="exit-outline" md="exit-sharp"></ion-icon>
+            <ion-label (click)="logout()">Logout</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
         </ion-list>
 
         <!-- <ion-list id="labels-list">
@@ -23,11 +64,11 @@
           </ion-item>
         </ion-list> -->
           <ion-list>
-  <ion-item > 
+  <!-- <ion-item > 
     <ion-select placeholder="Lets Go Elsewhere">
       <ion-select-option *ngFor="let label of labels2" value="{{ label.title }}"><a href="{{ label.url }}">{{ label.title }}</a></ion-select-option>
     </ion-select>
-  </ion-item>
+  </ion-item> -->
 </ion-list>
       </ion-content>
     </ion-menu>

@@ -11,18 +11,29 @@
 <ion-content class="background">
 <ion-card *ngFor="let task of tasks">
   <ion-card-header>
-    <ion-card-subtitle><b>Progress</b> <hr /> <ion-badge color="{{ task.progressStatus }}">{{ task.progress }}%</ion-badge></ion-card-subtitle>
-    <ion-progress-bar color="{{ task.progressStatus }}" value="{{ task.progress / 100 }}"></ion-progress-bar>
-    <ion-card-title >{{ task.name }}</ion-card-title>
+    <ion-card-subtitle><b>Progress</b> <hr /> <ion-badge color="{{ task.taskProgressStatus }}">{{ task.taskProgress }}%</ion-badge></ion-card-subtitle>
+    <ion-progress-bar color="{{ task.taskProgressStatus }}" value="{{ task.taskProgress / 100 }}"></ion-progress-bar>
+    <ion-card-title >{{ task.taskName }}</ion-card-title>
   </ion-card-header>
   <ion-card-content>
-    <i>{{ task.description }}</i>
+    <i>{{ task.taskDescription }}</i>
     <hr />
-    <b>Start Date: {{ task.startDate }}</b>
+    <b>Start Date: {{ task.taskStartDate }}</b>
     <hr />
-    <b>End Date: {{ task.endDate }}</b>
+    <b>End Date: {{ task.taskEndDate }}</b>
     <hr />
-    <ion-button slot="icon-only" size="small" color="{{ task.progressStatus }}">continue</ion-button>
+    <ion-button slot="icon-only" size="small" color="{{ task.taskProgressStatus }}">continue</ion-button>
+  </ion-card-content>
+</ion-card>
+
+
+<ion-card *ngIf="showNoTaskError">
+  <ion-card-header>
+    <ion-card-subtitle><b>Progress</b> <hr /> <ion-badge color="0%"></ion-badge></ion-card-subtitle>
+    <ion-progress-bar color="primary" value="100"></ion-progress-bar>
+    <ion-card-title >{{ showNoTaskErrorMessage }}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
   </ion-card-content>
 </ion-card>
 </ion-content>

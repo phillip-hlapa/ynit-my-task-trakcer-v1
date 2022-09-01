@@ -8,6 +8,7 @@
 </ion-header>
 
 <ion-content class="ion-align-items-center background loginopacity" fullscreen>
+
 <ion-card> 
   <ion-card-header>
     <ion-card-subtitle>Task Tracker</ion-card-subtitle>
@@ -33,11 +34,12 @@
                 <div *ngIf="password1.errors?.['required'] &&  password1.touched"><ion-label position="floating" color="warning">Password is required.</ion-label></div>
               </div>        
             </form>
+            <div *ngIf="visible_spinner" align="center"><hr /><ion-spinner color="primary" name="bubbles"></ion-spinner></div>
         </ion-col> 
       </ion-row>
       <ion-row class="ion-align-items-center" size-md>
         <ion-col>
-          <ion-button type="submit" color="primary" (click)="login()" [disabled]="email1.invalid || password1.invalid"><ion-icon name="log-in-outline"></ion-icon></ion-button>
+          <ion-button type="submit" color="primary" (click)="login()" [disabled]="email1.invalid || password1.invalid || visible_spinner"><ion-icon name="log-in-outline"></ion-icon></ion-button>
           <hr />
           <div *ngIf="showLoginError"><ion-label position="floating" color="warning">{{ loginError }}</ion-label></div>
         </ion-col>

@@ -21,16 +21,23 @@ export class RegisterComponent implements OnInit {
 
   public registerError = '';
   public showRegisterError = false;
+  public visible_spinner = false;
 
   ngOnInit() {
 
     this.folder = 'Registration'
     this.showRegisterError = false
+    this.visible_spinner = false
   }
 
 
   register() {
-   this.doRegistration()
+    this.visible_spinner = true
+    setTimeout(() => {
+      this.doRegistration()
+      this.visible_spinner = false
+    }, 2000);
+    
   }
 
   private doRegistration() {
@@ -42,11 +49,14 @@ export class RegisterComponent implements OnInit {
       if(registerdUser.message) {
         this.showRegisterError = true
         this.registerError = registerdUser.message
+        this.visible_spinner = false
       } else {
         this.showRegisterError = false
+        this.visible_spinner = false
         this.router.navigate(['tasksapp/login'])
       }
     }, err => {
+      this.visible_spinner = false
       console.log(err)
     })
   }

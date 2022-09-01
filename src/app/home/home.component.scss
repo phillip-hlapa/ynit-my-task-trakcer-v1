@@ -3,13 +3,13 @@ ion-content.background{
 }
 
 ion-content.loginopacity{
-    --ion-backdrop-opacity: rgba(0, 0, 0, .9);
+    --ion-backdrop-opacity: rgba(0, 0, 0, .4);
 }
 
 ion-card{
-    --background: rgba(0, 0, 0, .3);
+    --background: rgba(0, 0, 0, .7);
 }
 
-ion-item{
-    --background: rgba(0, 0, 0, .2);
-}
+// ion-item{
+//     --background: rgba(0, 0, 0, .9);
+// }

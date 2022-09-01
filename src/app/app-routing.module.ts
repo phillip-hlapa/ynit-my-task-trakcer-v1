@@ -20,16 +20,18 @@ const routes: Routes = [
   {
     path: 'tasksapp',
     redirectTo: 'tasksapp/home',
-    pathMatch: 'full'
+    pathMatch: 'full',
+    
   },
   {
     path: 'tasksapp/login',
     component: LoginComponent
   },
-  {
-    path: 'tasksapp/logout',
-    component: LogoutComponent
-  },
+  // {
+  //   // path: 'tasksapp/logout',
+  //   // component: LogoutComponent,
+
+  // },
   {
     path: 'tasksapp/tasks',
     component: TasksviewComponent,

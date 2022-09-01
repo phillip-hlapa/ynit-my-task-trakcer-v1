@@ -6,3 +6,64 @@
     <ion-title>{{ folder }}</ion-title>
   </ion-toolbar>
 </ion-header>
+
+
+<ion-content class="ion-align-items-center background loginopacity" fullscreen>
+  <ion-card> 
+    <ion-card-header>
+      <ion-card-subtitle>Create New Task</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+
+      <ion-item >
+        <ion-label position="floating">Task Name</ion-label>
+        <ion-input  minlength="4" type="text" required [(ngModel)]="taskObj.taskName" name="taskName" #taskName="ngModel"></ion-input>
+      </ion-item>
+       <div *ngIf="taskName.invalid && (taskName.dirty || taskName.touched)"class="alert">
+       <div *ngIf="taskName.errors?.['required'] &&  taskName.touched"><ion-label position="floating" color="danger"><i>Task Name is required.</i></ion-label></div>
+       <div *ngIf="taskName.errors?.['minlength']"><ion-label position="floating" color="danger"><i>Task Name must be at least 4 characters long.</i></ion-label></div>
+      </div>
+      <ion-item >
+        <ion-label position="floating">Task Description</ion-label>
+        <ion-input  #taskDescription="ngModel" type="textfield" required [(ngModel)]="taskObj.taskDescription" name="taskDescription"></ion-input>
+      </ion-item>
+      <div *ngIf="taskDescription.invalid && (taskDescription.dirty || taskDescription.touched)"class="alert">
+      <div *ngIf="taskDescription.errors?.['required'] &&  taskDescription.touched"><ion-label position="floating" color="danger"><i>Task Description is requred.</i></ion-label></div>
+      </div>
+      <ion-item >
+        <ion-label position="floating">Start Date</ion-label>
+        <ion-input value="{{ taskObj.taskStartDate | date: 'dd.MM.yyyy' }}" id="date"></ion-input>
+        <ion-popover trigger="date">
+          <ng-template>
+            <ion-datetime
+              presentation="date"
+              [(ngModel)]="taskObj.taskStartDate"
+            ></ion-datetime>
+          </ng-template>
+        </ion-popover>
+      </ion-item>
+      <ion-item >
+        <ion-label position="floating">End Date</ion-label>
+        <ion-input value="{{ taskObj.taskEndDate | date: 'dd.MM.yyyy' }}" id="date1"></ion-input>
+        <ion-popover trigger="date1">
+          <ng-template>
+            <ion-datetime
+              presentation="date"
+              [(ngModel)]="taskObj.taskEndDate"
+            ></ion-datetime>
+          </ng-template>
+        </ion-popover>
+      </ion-item>
+      <hr />
+      <div *ngIf="visible_spinner" align="center"><hr /><ion-spinner color="primary" name="bubbles"></ion-spinner></div>
+      <ion-button class="ion-margin-top" type="submit"  [disabled]="visible_spinner" color="success" (click)="createTask()">
+        <ion-icon name="checkmark-outline"></ion-icon>
+      </ion-button>
+      <hr />
+      <div *ngIf="createTaskError"><ion-label position="floating" color="warning">{{ createTaskErrorMessage }}</ion-label></div>
+
+    </ion-card-content>
+  </ion-card>
+  
+  
+  </ion-content>

@@ -8,7 +8,7 @@ import { environment } from '../../enviroment';
 export class UsersService {
 
   constructor(private http: HttpClient) { }
-  url = environment.taskTrackerBackendService.dev;
+  url = environment.taskTrackerBackendService.prod;
 
 
   Register(User: any) {
@@ -22,16 +22,17 @@ export class UsersService {
   }
   
   isAuthenticated() {
-    let isLoggedIn = sessionStorage.getItem('userId');
-    let logged = true;
-    console.log('is authenticated (isAuthenticated): ' + isLoggedIn)
-    if(isLoggedIn === undefined || isLoggedIn === null || isLoggedIn === '') {
-      logged = false
+    let userId = sessionStorage.getItem('userId');
+    // console.log('is authenticated (isAuthenticated): ' + userId)
+    if(userId === undefined || userId === null || userId === '') {
+      // console.log('is logged in: false')
+      return false
     } else {
-      logged = true;
+      // console.log('is logged in: true')
+      return true;
     }
-    console.log('is logged in: ' + logged)
-    return logged;
+    
+
   }
 
 }

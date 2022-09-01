@@ -49,13 +49,13 @@
         <div *ngIf="confirmpassword.errors?.['minlength']"><ion-label position="floating" color="danger"><i>Password must be at least 4 characters long.</i></ion-label></div>
         <div *ngIf="!(confirmpassword.value === password.value) && password.touched"><ion-label position="floating" color="danger"><i>passwords don't match</i></ion-label></div>
       <!-- </div>   -->
-    
-      <ion-button class="ion-margin-top" type="submit"  color="success" (click)="register()" [disabled]="password.invalid || confirmpassword.invalid || name.invalid || email.invalid || !(confirmpassword.value === password.value)">
+      <hr />
+      <div *ngIf="visible_spinner" align="center"><hr /><ion-spinner color="primary" name="bubbles"></ion-spinner></div>
+      <ion-button class="ion-margin-top" type="submit"  [disabled]="visible_spinner" color="success" (click)="register()" [disabled]="password.invalid || confirmpassword.invalid || name.invalid || email.invalid || !(confirmpassword.value === password.value)">
         <ion-icon name="checkmark-outline"></ion-icon>
       </ion-button>
       <hr />
-      <ion-button color="primary" [routerLink]="['/tasksapp/login']"><ion-icon name="log-in-outline"></ion-icon></ion-button>
-      <hr />
+      <ion-button color="primary" [disabled]="visible_spinner" [routerLink]="['/tasksapp/login']"><ion-icon name="log-in-outline"></ion-icon></ion-button>
       <div *ngIf="showRegisterError"><ion-label position="floating" color="warning">{{ registerError }}</ion-label></div>
     
     
