@@ -32,10 +32,14 @@ export class HomeComponent implements OnInit {
   folder = 'Welcome Home'
   news: any
   loggedInUser = ''
+  loggedInUserId = ''
   showNewsErrorMessage = false
+  visible_spinner = true
 
   ngOnInit() {
+    this.visible_spinner = true
     this.loggedInUser = sessionStorage.getItem('username')
+    this.loggedInUserId = sessionStorage.getItem('userId')
     this.newsServiceService.getNews().subscribe(news => {
     this.news = news;
     this.commentObj.username = ''
@@ -43,12 +47,15 @@ export class HomeComponent implements OnInit {
     this.newsObject.news_header_subtitle = ''
     this.newsObject.news_header_title = ''
     this.newsObject.news_header_content = ''
+    console.log(news)
+    this.visible_spinner = false
     if(this.news.length === 0) {
       this.showNewsErrorMessage = true;
     } else { 
       this.showNewsErrorMessage = false
     }
     }, error => {
+      this.visible_spinner = true
       console.log(error)
     })
   }
@@ -57,10 +64,20 @@ export class HomeComponent implements OnInit {
     console.log('commenting: ' + newId)
     this.commentObj.username = sessionStorage.getItem('username')
     this.newsServiceService.saveComment(newId, this.commentObj).subscribe(result => {
-      this.ngOnInit()
+      this.newsServiceService.getNews().subscribe(news => {
+        this.ngOnInit()
+        }, error => {
+          console.log(error)
+        })
     })
   }
 
+  deleteNews(newsId: any) {  
+    console.log('deleting comment: ' + newsId)
+    this.newsServiceService.deleteNews(newsId).subscribe(result => {
+      this.ngOnInit()
+    })
+  }
 
   cancel() {
     this.modal.dismiss(null, 'cancel');

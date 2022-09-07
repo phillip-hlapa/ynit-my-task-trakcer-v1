@@ -10,6 +10,7 @@ import { TaskmanagementComponent } from './taskmanagement/taskmanagement.compone
 import { TasksprogressComponent } from './tasksprogress/tasksprogress.component';
 import { TasksviewComponent } from './tasksview/tasksview.component';
 import { UsersService } from './services/users-service/users.service';
+import { UseraccountComponent } from './useraccount/useraccount.component';
 
 const routes: Routes = [
   {
@@ -56,6 +57,10 @@ const routes: Routes = [
   {
     path: 'tasksapp/home',
     component: HomeComponent
+  },
+  {
+    path: 'tasksapp/useraccount',
+    component: UseraccountComponent
   },
   {
     path: 'tasksapp/:id',

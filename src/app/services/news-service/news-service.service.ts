@@ -8,6 +8,7 @@ import { environment } from '../../enviroment';
 })
 export class NewsServiceService {
 
+
   constructor(private http: HttpClient) { }
 
 
@@ -18,15 +19,22 @@ export class NewsServiceService {
     console.log(environment)
     return this.http.post(this.url + 'news/create', News, { headers: { 'Token': 'XHDODJKLJKJAJSOPKSASA'}})
   }
+
+  saveComment(newsId: any, comment: any) {
+    console.log(environment)
+    return this.http.post(this.url + 'news/' + newsId + '/comments/create', comment, { headers: { 'Token': 'XHDODJKLJKJAJSOPKSASA'}})
+  }
   
   getNews() {
     console.log(environment)
     return this.http.get(this.url + 'news/', { headers: { 'Token': 'XHDODJKLJKJAJSOPKSASA'}})
   }
 
-  saveComment(newsId: any, comment: any) {
+  deleteNews(newsId: any) {
     console.log(environment)
-    return this.http.post(this.url + 'news/' + newsId + '/comments/create', comment, { headers: { 'Token': 'XHDODJKLJKJAJSOPKSASA'}})
+    return this.http.delete(this.url + 'news/'+ newsId, { headers: { 'Token': 'XHDODJKLJKJAJSOPKSASA'}})
   }
+
+ 
   }
 

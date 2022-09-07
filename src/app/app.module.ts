@@ -16,6 +16,7 @@ import { CreatetaskComponent } from './createtask/createtask.component';
 import { HttpClientModule } from '@angular/common/http'
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
+import { UseraccountComponent } from './useraccount/useraccount.component';
 import { AuthGuard } from './services/guard.guard';
 
 @NgModule({
@@ -28,7 +29,8 @@ import { AuthGuard } from './services/guard.guard';
     RegisterComponent, 
     LogoutComponent, 
     CreatetaskComponent,
-    HomeComponent
+    HomeComponent,
+    UseraccountComponent
   ],
   imports: [BrowserModule, HttpClientModule, IonicModule.forRoot(), AppRoutingModule, FormsModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],

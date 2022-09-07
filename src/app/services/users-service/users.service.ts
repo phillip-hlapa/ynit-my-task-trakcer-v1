@@ -20,7 +20,29 @@ export class UsersService {
     console.log(environment)
     return this.http.post(this.url + 'login', login, { headers: { 'Token': 'XHDODJKLJKJAJSOPKSASA'}})
   }
+
+  getUsers() {
+    console.log(environment)
+    return this.http.get(this.url + 'users', { headers: { 'Token': 'XHDODJKLJKJAJSOPKSASA'}})
+  }
   
+
+  getUser(userId: any) {
+    console.log(environment)
+    return this.http.get(this.url + 'users/' + userId, { headers: { 'Token': 'XHDODJKLJKJAJSOPKSASA'}})
+  }
+
+
+  updateUser(updateUser: any, userId: any) {
+    console.log(environment)
+    return this.http.post(this.url + 'users/update/' + userId, updateUser, { headers: { 'Token': 'XHDODJKLJKJAJSOPKSASA'}})
+  }
+  
+  deleteUser(userId) {
+    console.log(environment)
+    return this.http.delete(this.url + 'users/' + userId + userId, { headers: { 'Token': 'XHDODJKLJKJAJSOPKSASA'}})
+  }
+
   isAuthenticated() {
     let userId = sessionStorage.getItem('userId');
     // console.log('is authenticated (isAuthenticated): ' + userId)
