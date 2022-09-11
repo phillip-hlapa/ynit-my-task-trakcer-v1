@@ -73,6 +73,14 @@
   </ion-row>
   </ion-grid>
 </div> 
+<ion-card>
+  <ion-card-header>
+    SPC - Quality Report
+  </ion-card-header>
+  <ion-card-content>
+    <canvas  align="center" #barCanvas style="position: relative; height:20vh; width:40vw"></canvas>
+  </ion-card-content>
+</ion-card>
 <br>
 <div *ngIf="visible_spinner === true" align="center"><ion-label color="primary">loading profile...</ion-label><hr /><ion-spinner color="primary" name="bubbles"></ion-spinner></div>
 </ion-content>
