@@ -32,6 +32,16 @@ export class UsersService {
     return this.http.get(this.url + 'users/' + userId, { headers: { 'Token': 'XHDODJKLJKJAJSOPKSASA'}})
   }
 
+  saveUserProfilePic(imageData: any) {
+    console.log(environment)
+    return this.http.post(this.url + 'users/pic', imageData, { headers: { 'Token': 'XHDODJKLJKJAJSOPKSASA'}})
+  }
+
+  getUserProfilePic(userId: string) {
+    console.log(environment)
+    return this.http.get(this.url + 'users/pic/' + userId, { headers: { 'Token': 'XHDODJKLJKJAJSOPKSASA'}})
+  }
+
 
   updateUser(updateUser: any, userId: any) {
     console.log(environment)

@@ -18,9 +18,11 @@ export class UseraccountComponent implements OnInit {
   @ViewChild('barCanvas', {static: true}) private barCanvas: ElementRef;
   barChart: any;
 
+  isImageUploaded = false
   visible_spinner = true
   canEdit = false
   update_Status = false;
+  previewImage = ''
   userObj : any = {
     username: String,
     email: String,
@@ -45,6 +47,7 @@ export class UseraccountComponent implements OnInit {
       }, error => {
         console.log(error)
       })
+      this.getProfilePic()
       this.visible_spinner = false;
     }, 3000);
   }
@@ -52,10 +55,22 @@ export class UseraccountComponent implements OnInit {
  startEdit() {
   this.canEdit = true
  }
+
+ getProfilePic() {
+  this.UserService.getUserProfilePic(sessionStorage.getItem('userId')).subscribe(userImage => {
+    let data1: any = userImage
+    this.previewImage = data1.data
+    this.isImageUploaded = true
+    console.log('received preview image => ', data1.name)
+  }, error => {
+    this.isImageUploaded = true
+    console.log(error)
+  })
+ }
  updateProfile() {
   this.canEdit = false
   this.UserService.updateUser( this.userObj, sessionStorage.getItem('userId')).subscribe(result => {
-    console.log(result)
+    // console.log(result)
     this.update_Status = true
     setTimeout(() => {
       this.update_Status = false
@@ -67,7 +82,36 @@ export class UseraccountComponent implements OnInit {
  }
 
 
- uploadPicture() {}
+ uploadPicture(event: any) {
+  // console.log(event)
+    const photo = event.target.files[0];
+
+    const reader = new FileReader();
+
+    reader.onload = (e: any) => {
+      console.log(e.target.result);
+      this.previewImage = e.target.result
+      this.isImageUploaded = true
+
+      this.UserService.saveUserProfilePic({name: photo.name + Date.now, data: e.target.result, userId: sessionStorage.getItem('userId')}).subscribe(result => {
+        console.log(result);
+      }, err => {
+        console.log(err)
+      })
+
+    };
+    reader.readAsDataURL(photo);
+
+    const imageFormData = new FormData();
+    imageFormData.append('image', photo, photo.name);
+
+    setTimeout(() => {
+      console.log(imageFormData)
+    }, 2000);
+
+
+    console.log(photo)
+ }
 
 
 
